@@ -1,73 +1,55 @@
-@extends('layouts.app')
+@extends('layouts.layout')
+
+@section('title')
+    Login / Pizza House
+@endsection
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container py-lg-5 py-md-3">
+                <h2 class="title">Login</h2>
+            </div>
+        </div>
+    </section>
+    <!-- contacts -->
+    <section class="w3l-contact-7 py-5" id="contact">
+        <div class="contacts-9 py-lg-5 py-md-4">
+            <div class="container">
+                <div class="top-map">
+                    <div class="row map-content-9">
+                        <div class="col-lg-8">
+                            <h3 class="title-big">Login</h3>
+                            <p class="mb-4 mt-lg-0 mt-2">Required fields are marked *</p>
+                            <form action="" method="post" class="text-right">
+                                <div class="w-1/2 space-y-5">
+                                    <input type="text" name="email" id="email" placeholder="Email*" required="">
+                                    <input type="text" name="password" id="password" placeholder="Password*" required>
                                 </div>
-                            </div>
+                                <button type="submit"
+                                    class="btn btn-primary btn-style mt-3 flex justify-left">Submit</button>
+                            </form>
                         </div>
+                        <div class="col-lg-4 cont-details">
+                            <address>
+                                <h5 class="mt-md-5 mt-4">Contact Address</h5>
+                                <p><span class="fa fa-map-marker"></span>Burger Bun, 208 Trainer Avenue street, Corner
+                                    Market, NY - 62617. </p>
+                                <p> <a href="mailto:info@example.com"><span
+                                            class="fa fa-envelope"></span>info@example.com</a></p>
+                                <p><span class="fa fa-phone"></span><a href="tel:+12 5348943649"> +12 534894364</a></p>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
+                                <h5 class="mt-4 mb-3">Opening Hours</h5>
+                                <div class="hours">
+                                    <p><span class="fa fa-clock-o"></span>10:00am - 09:00pm</p>
+                                    <p>Sunday Closed</p>
+                                </div>
+                            </address>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
+    <!-- //contacts -->
 @endsection

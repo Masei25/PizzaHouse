@@ -1,19 +1,20 @@
-@extends('layouts.header')
+@extends('layouts.layout')
 
-<!--/header-->
-<!-- banner section -->
+@section('content')
+    <!-- banner section -->
 <section id="home" class="w3l-banner py-5">
     <div class="container py-lg-5 py-md-4 mt-lg-0 mt-md-5 mt-4">
         <div class="row align-items-center py-lg-5 py-4 mt-4">
             <div class="col-lg-6 col-sm-12">
                 <h3 class="">Delight your Best. </h3>
-                <h2 class="mb-4">Steak Burger</h2>
-                <p>We are dedicated to the safety of our guests and employees and have updated our safety measures. Lorem ipsum dolor sit amet elit. Provident.
+                <h2 class="mb-4">Pizza House</h2>
+                <p>We are dedicated to the safety of our guests and employees and have updated our safety measures.
+                    Lorem ipsum dolor sit amet elit. Provident.
                     fugit odit? Fugit ipsam. Sed ac ex. Nam mauris velit, ac
                     cursus quis, leo.</p>
                 <div class="mt-md-5 mt-4">
                     <a class="btn btn-primary btn-style mr-2" href="menu.html"> See Menu </a>
-                    <a class="btn btn-outline-primary btn-style" href="#call"> Book a table </a>
+                    <a class="btn btn-outline-primary btn-style" href="#call"> Order a Pizza </a>
                 </div>
             </div>
             <div class="col-lg-5">
@@ -28,19 +29,20 @@
             <div class="row">
                 <div class="col-lg-6 left-wthree-img text-righ">
                     <div class="position-relative">
-                        <img src="assets/images/about.jpg" alt="" class="img-fluid radius-image-full">
+                        <img src="{{ asset('images/about.jpg') }}" alt="" class="img-fluid radius-image-full">
                         <a href="#small-dialog" class="popup-with-zoom-anim play-view text-center position-absolute">
                             <span class="video-play-icon">
                                 <span class="fa fa-play"></span>
                             </span>
                         </a>
                         <!-- dialog itself, mfp-hide class is required to make dialog hidden -->
-                        
+
                     </div>
                 </div>
                 <div class="col-lg-6 mt-lg-0 mt-md-5 mt-4 about-right-faq align-self">
                     <h5 class="title-small mb-1">Our story</h5>
-                    <h3 class="title-big">Burgers! You won't Find Anywhere Else with Best Quality <span>Ingredients</span></h3>
+                    <h3 class="title-big">Pizza! You won't Find Anywhere Else with Best Quality <span>Ingredients</span>
+                    </h3>
                     <p class="mt-sm-4 mt-3">Lorem ipsum viverra feugiat. Pellen tesque libero ut justo,
                         ultrices in ligula. Semper at tempufddfel. Lorem ipsum dolor sit amet consectetur adipisicing
                         elit. Non quae, consequatur voluptatem ad.</p>
@@ -57,9 +59,10 @@
         <div class="grids-area-hny main-cont-wthree-fea row">
             <div class="col-lg-4 col-md-6 grids-feature">
                 <div class="area-box">
-                    <img src="assets/images/burger.png" alt="burger logo" width="35px">
-                    <h4><a href="#feature" class="title-head">Burgers</a></h4>
-                    <p class="mb-3">Vivamus a ligula quam. Ut blandit eu leo non. Duis sed dolor amet ipsum primis in faucibus orci dolor sit et amet.</p>
+                    <img src="{{ asset('images/burger.png') }}" alt="burger logo" width="35px">
+                    <h4><a href="#feature" class="title-head">Pizza</a></h4>
+                    <p class="mb-3">Vivamus a ligula quam. Ut blandit eu leo non. Duis sed dolor amet ipsum primis in
+                        faucibus orci dolor sit et amet.</p>
                     <a href="menu.html" class="btn btn-text">View all </a>
                 </div>
             </div>
@@ -67,7 +70,8 @@
                 <div class="area-box">
                     <img src="assets/images/snack.png" alt="burger logo" width="35px">
                     <h4><a href="#feature" class="title-head">Snacks</a></h4>
-                    <p class="mb-3">Vivamus a ligula quam. Ut blandit eu leo non. Duis sed dolor amet ipsum primis in faucibus orci dolor sit et amet.</p>
+                    <p class="mb-3">Vivamus a ligula quam. Ut blandit eu leo non. Duis sed dolor amet ipsum primis in
+                        faucibus orci dolor sit et amet.</p>
                     <a href="menu.html" class="btn btn-text">View all </a>
                 </div>
             </div>
@@ -75,7 +79,8 @@
                 <div class="area-box">
                     <img src="assets/images/beverage.png" alt="burger logo" width="35px">
                     <h4><a href="#feature" class="title-head">Beverages</a></h4>
-                    <p class="mb-3">Vivamus a ligula quam. Ut blandit eu leo non. Duis sed dolor amet ipsum primis in faucibus orci dolor sit et amet.</p>
+                    <p class="mb-3">Vivamus a ligula quam. Ut blandit eu leo non. Duis sed dolor amet ipsum primis in
+                        faucibus orci dolor sit et amet.</p>
                     <a href="menu.html" class="btn btn-text">View all </a>
                 </div>
             </div>
@@ -176,6 +181,7 @@
     </div>
 </section>
 <!-- //mobile section --->
+@endsection
 
 
-@extends('layouts.footer')
+
