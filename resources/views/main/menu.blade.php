@@ -1,4 +1,8 @@
 @extends('layouts.layout')
+
+@section('title', 'Menu / Pizza House')
+
+@section('content')
 <section class="w3l-about-breadcrumb">
     <div class="breadcrumb-bg breadcrumb-bg-about py-5">
         <div class="container py-lg-5 py-md-3">
@@ -166,4 +170,5 @@
     </div>
     <!-- menu block -->
 </div>
+@endsection
 <!-- footer -->
