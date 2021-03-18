@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Users;
+namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    public function index()
+    public function show()
     {
-        return view('users/index');
+        return view('main.menu');
     }
-
-    
 }

@@ -1,8 +1,6 @@
 @extends('layouts.layout')
 
-@section('title')
-    Login / Pizza House
-@endsection
+@section('title', 'Login / Pizza House')
 
 @section('content')
     <section class="w3l-about-breadcrumb">
