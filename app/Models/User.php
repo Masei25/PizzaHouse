@@ -20,7 +20,7 @@ class User extends Authenticatable
         'firstname',
         'lastname',
         'email',
-        'password',
+        'password'
     ];
 
     /**
@@ -33,6 +33,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $defaults = [
+        'access_level' => 2
+    ];
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -41,4 +45,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 }

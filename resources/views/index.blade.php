@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('title', 'Pizza House')
+
 @section('content')
     <!-- banner section -->
 <section id="home" class="w3l-banner py-5">

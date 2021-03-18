@@ -19,14 +19,24 @@
                         <div class="col-lg-8">
                             <h3 class="title-big">Sign up with us</h3>
                             <p class="mb-4 mt-lg-0 mt-2">Required fields are marked *</p>
+                            <div class="mb-3">
+                                @if ($errors->any())
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li class="text-red-800 mb-5">{{ $error }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </div>
                             <form action="" method="post" class="text-right">
                                 @csrf
                                 <div class="w-1/2 space-y-3">
-                                    <input type="text" name="firtname" id="firstname" placeholder="First Name*" required="">
-                                    <input type="email" name="lastname" id="lastname" placeholder="Last Name*" required="">
-                                    <input type="text" name="email" id="email" placeholder="Email*" required="">
-                                    <input type="text" name="password1" id="password1" placeholder="Password*" required>
-                                    <input type="text" name="password2" id="password2" placeholder="Confirm Password"
+                                    <input type="text" name="firstname" id="firstname" placeholder="First Name*" required="">
+                                    <input type="text" name="lastname" id="lastname" placeholder="Last Name*" required="">
+                                    <input type="email" name="email" id="email" placeholder="Email*" required="">
+                                    <input type="password" name="password" id="password" placeholder="Password*" required>
+                                    <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password"
                                         required>
                                 </div>
                                 <button type="submit"

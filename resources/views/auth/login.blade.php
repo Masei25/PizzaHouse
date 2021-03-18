@@ -21,10 +21,21 @@
                         <div class="col-lg-8">
                             <h3 class="title-big">Login</h3>
                             <p class="mb-4 mt-lg-0 mt-2">Required fields are marked *</p>
+                            <div class="mb-3">
+                                @if (Session::has('error'))
+                                    <p class="text-red-600">{{ Session::get('error') }}</p>
+                                @endif
+                            </div>
+                            <div class="mb-3">
+                                @if (Session::has('success'))
+                                    <p class="text-green-600">{{ Session::get('success') }}</p>
+                                @endif
+                            </div>
                             <form action="" method="post" class="text-right">
+                                @csrf
                                 <div class="w-1/2 space-y-5">
                                     <input type="text" name="email" id="email" placeholder="Email*" required="">
-                                    <input type="text" name="password" id="password" placeholder="Password*" required>
+                                    <input type="password" name="password" id="password" placeholder="Password*" required>
                                 </div>
                                 <button type="submit"
                                     class="btn btn-primary btn-style mt-3 flex justify-left">Submit</button>
