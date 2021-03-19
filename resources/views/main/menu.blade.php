@@ -15,10 +15,10 @@
     <div id="w3l-menublock" class="text-center py-lg-4 py-md-3">
         <div class="container">
             <input id="tab1" type="radio" name="tabs" checked>
-            <label class="tabtle" for="tab1">Burgers</label>
+            <label class="tabtle" for="tab1">Pizza</label>
 
             <input id="tab2" type="radio" name="tabs">
-            <label class="tabtle" for="tab2">Hot Snacks</label>
+            <label class="tabtle" for="tab2">Burger</label>
 
             <input id="tab3" type="radio" name="tabs">
             <label class="tabtle" for="tab3">Beverages</label>

@@ -36,7 +36,7 @@
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item @@contact__active">
                                 <a class="btn btn-outline-primary btn-style py-1 mt-1"
-                                    href="{{ route('login') }}">Add Item</a>
+                                    href="{{ route('additems') }}">Add Item</a>
                             </li>
                             <li class="nav-item @@contact__active">
                                 <a class="btn btn-primary btn-style mr-2 py-1 mt-1"

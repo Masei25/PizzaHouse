@@ -3,9 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Main\MainController as Main;
 use App\Http\Controllers\Users\MainController;
+use App\Http\Controllers\Users\ItemsController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Main\MainController as Main;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +38,9 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::namespace('Users')->prefix('users')->middleware('users')->group(function () {
-    Route::get('/index', [MainController::class, 'index']);
+    Route::get('/', [MainController::class, 'index']);
+    Route::get('/additems', [ItemsController::class, 'index'])->name('additems');
+    Route::post('/additems', [ItemsController::class, 'store']);
 });
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
