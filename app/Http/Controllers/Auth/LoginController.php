@@ -34,7 +34,7 @@ class LoginController extends Controller
         ]);
 
         if(Auth::attempt($user)){
-            return redirect('users/index');
+            return redirect('users');
         }
 
         return back()->with('error', 'Invalid login credentials');

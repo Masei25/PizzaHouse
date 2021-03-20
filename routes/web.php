@@ -25,7 +25,7 @@ Route::get('/', [IndexController::class, 'show'])->middleware('guest');
 Auth::routes();
 
 Route::namespace('Main')->prefix('main')->middleware('guest')->group(function() {
-    Route::get('/menu', [Main::class, 'show'])->name('menu');
+    Route::get('/', [Main::class, 'show'])->name('menu');
 });
 
 Route::middleware('guest')->group(function () {
@@ -38,7 +38,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::namespace('Users')->prefix('users')->middleware('users')->group(function () {
-    Route::get('/', [MainController::class, 'index']);
+    Route::get('/', [MainController::class, 'show']);
     Route::get('/additems', [ItemsController::class, 'index'])->name('additems');
     Route::post('/additems', [ItemsController::class, 'store']);
 });

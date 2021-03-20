@@ -31,7 +31,7 @@
                 <path
                     d="M7.27 2.047a1 1 0 0 1 1.46 0l6.345 6.77c.6.638.146 1.683-.73 1.683H11.5v3a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-3H1.654C.78 10.5.326 9.455.924 8.816L7.27 2.047z" />
             </svg>
-            <p class="font-medium lg:text-2xl text-gray-500">20</p>
+            <p class="font-medium lg:text-2xl text-gray-500">{{ count($items) }}</p>
             <p class="mt-1 text-xs lg:text-sm text-gray-400 text-center">Items Added</p>
         </div>
         <div class="bg-yellow-200 p-2 grid grid-col justify-items-center rounded lg:w-40">
@@ -57,6 +57,11 @@
     <div class="container">
 
         <div class="mx-4 my-10">
+            <div class="mb-3">
+                @if (Session::has('success'))
+                    <p class="text-green-700">{{ Session::get('success') }}</p>
+                @endif
+            </div>
             <p class="text-lg font-medium">Items Added</p>
             <div class="flex justify-end w-full mt-5">
                 <form action="" class="hidden lg:block lg:space-y-0">
@@ -89,51 +94,87 @@
                                     Price</th>
                                 <th
                                     class="hidden p-3 text-sm font-medium text-left text-gray-600 bg-gray-100 border border-gray-300 lg:table-cell">
-                                    Status</th>
+                                    Available Quantity</th>
                                 <th
                                     class="hidden p-3 text-sm font-medium text-left text-gray-600 bg-gray-100 border border-gray-300 lg:table-cell">
                                     Created At</th>
+                                <th
+                                    class="hidden p-3 text-sm font-medium text-left text-gray-600 bg-gray-100 border border-gray-300 lg:table-cell">
+                                    Action</th>
 
                             </tr>
                         </thead>
                         <tbody>
-                            <tr
-                                class="flex flex-row flex-wrap mb-10 bg-white lg:hover:bg-gray-100 lg:table-row lg:flex-row lg:flex-no-wrap lg:mb-0">
-                                <td
-                                    class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
-                                    <span
-                                        class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">First
-                                        Name</span>
-                                    <a class="hover:text-gray-400">
-                                        <span class="flex justify-end text-left lg:block">name<span></a>
-                                </td>
-                                <td
-                                    class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
-                                    <span
-                                        class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Last
-                                        Name</span>
-                                    <span class="flex justify-end text-left lg:block">amae</span>
-                                </td>
-                                <td
-                                    class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
-                                    <span
-                                        class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Email</span>
-                                    <span class="flex justify-end text-left lg:block">name</span>
-                                </td>
-                                <td
-                                    class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
-                                    <span
-                                        class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Active</span>
-
-                                </td>
-                                <td
-                                    class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
-                                    <span
-                                        class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Created
-                                        At</span>
-                                    <span class="flex justify-end text-left lg:block"></span>
-                                </td>
-                            </tr>
+                            @foreach ($items as $item)
+                                <tr
+                                    class="flex flex-row flex-wrap mb-10 bg-white lg:hover:bg-gray-100 lg:table-row lg:flex-row lg:flex-no-wrap lg:mb-0">
+                                    <td
+                                        class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
+                                        <span
+                                            class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Item
+                                            Name
+                                        </span>
+                                        <a class="hover:text-gray-400">
+                                            <span
+                                                class="flex justify-end text-left lg:block">{{ $item->item_name }}<span></a>
+                                    </td>
+                                    <td
+                                        class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
+                                        <span
+                                            class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Item
+                                            Type
+                                            Name</span>
+                                        <a class="hover:text-gray-400">
+                                            <span
+                                                class="flex justify-end text-left lg:block">{{ $item->item_type }}<span></a>
+                                    </td>
+                                    <td
+                                        class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
+                                        <span
+                                            class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Price
+                                            Name</span>
+                                        <span class="flex justify-end text-left lg:block">{{ $item->price }}</span>
+                                    </td>
+                                    <td
+                                        class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
+                                        <span
+                                            class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Available
+                                            Quantity</span>
+                                        <span class="flex justify-end text-left lg:block">10</span>
+                                    </td>
+                                    <td
+                                        class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
+                                        <span
+                                            class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Created
+                                            At</span>
+                                        <span
+                                            class="flex justify-end text-left lg:block">{{ $item->created_at->format('m-d-Y') }}</span>
+                                    </td>
+                                    <td
+                                        class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
+                                        <span
+                                            class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Action
+                                            At</span>
+                                        <span class="flex space-x-3 text-left">
+                                            <a href="">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="text-blue-600" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                            </svg>
+                                            </a>
+                                            <a href="">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-red-700" viewBox="0 0 16 16">
+                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                                </svg>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
 

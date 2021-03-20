@@ -33,14 +33,31 @@
 
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     @if (auth()->user())
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item @@contact__active">
-                                <a class="btn btn-outline-primary btn-style py-1 mt-1"
-                                    href="{{ route('additems') }}">Add Item</a>
+                        <ul class="navbar-nav ml-auto space-x-3">
+                            <li>
+                                <a class="border-2 text-white border-yellow-400 py-1 mt-1 flex rounded p-1 font-medium hover:bg-yellow-400 easy-in-out duration-400"
+                                    href="/users">
+                                    <p class="text-sm text-gray-200">Dashboard</p>
+                                </a>
                             </li>
-                            <li class="nav-item @@contact__active">
-                                <a class="btn btn-primary btn-style mr-2 py-1 mt-1"
-                                    href="{{ route('logout') }}">Logout</a>
+                            <li>
+                                <a class="border-2 text-white border-yellow-400 py-1 mt-1 flex rounded p-1 font-medium hover:bg-yellow-400 easy-in-out duration-400"
+                                    href="{{ route('additems') }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-5 w-5" viewBox="0 0 16 16">
+                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                    </svg>
+                                    <p class="text-sm text-gray-200">Add Item</p>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="item-center text-gray-800  border-yellow-400 space-x-2 bg-yellow-400 py-1 mt-1 flex rounded p-1.5 font-medium hover:bg-opacity-70 easy-in-out duration-400"
+                                    href="{{ route('logout') }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-5 w-5" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+                                        <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+                                    </svg>
+                                    <p class="text-base text-gray-800">Logout</p>
+                                </a>
                             </li>
 
                         </ul>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Users;
 
+use Image;
 use App\Models\Items;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -32,14 +33,23 @@ class ItemsController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,svg,gif|max:2048'
         ]);
 
-        $imageName = Str::random(15) .'.'. $request->image->extension();
-        $request->image->move(public_path('upload'), $imageName);
+        $image = $request->file('image');
+
+        $imageName = Str::random(15) .'.'. $image->extension();
+
+        $imageResize = Image::make($image->path());
+
+        $imageResize->resize(410, 540, function($constraint) {
+            $constraint->aspectRatio();
+        });
+
+        $image->move(public_path('upload'), $imageName);
 
         $items->image = $imageName;
 
         $items->save();
 
-        return back()->with('success', 'Item added successfully');
+        return redirect('users')->with('success', 'Item added successfully');
 
     }
 }

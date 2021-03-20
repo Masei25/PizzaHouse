@@ -65,18 +65,13 @@
                 </ul>
             @endif
         </div>
-        <div class="mb-3">
-            @if (Session::has('success'))
-                <p class="text-green-600">{{ Session::get('success') }}</p>
-            @endif
-        </div>
         <form action="" method="POST" class="flex flex-col justify-center space-y-3" enctype="multipart/form-data">
             @csrf
             <select id="type" name="type" class="rounded p-2 bg-gray-100 focus:border-yellow-200">
                 <option value="" disabled selected>Select Item *</option>
                 <option value="pizza">Pizza</option>
                 <option value="burger">Burger</option>
-                <option value="breverages">Breverages</option>
+                <option value="beverages">Beverages</option>
             </select>
             <input type="text" name="itemname" id="itemname" placeholder="Item Name / Description *"
                 class="rounded p-2 bg-gray-100 focus:border-yellow-200">

@@ -2,15 +2,22 @@
 
 namespace App\Http\Controllers\Users;
 
-use App\Http\Controllers\Controller;
+use App\Models\Items;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class MainController extends Controller
 {
-    public function index()
+    public function show(Request $request)
     {
-        return view('users/index');
+        $user = $request->user();
+        $items = Items::where('userid', $user->id)
+                            ->get();
+
+        return view('users/index', [
+            'items' => $items
+        ]);
     }
 
-    
+
 }
