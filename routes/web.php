@@ -25,7 +25,9 @@ Route::get('/', [IndexController::class, 'show'])->middleware('guest');
 Auth::routes();
 
 Route::namespace('Main')->prefix('main')->middleware('guest')->group(function() {
-    Route::get('/', [Main::class, 'show'])->name('menu');
+    Route::get('/', [Main::class, 'index'])->name('menu');
+    Route::get('/item-info/{itemslug}', [Main::class, 'show'])->name('iteminfo');
+    Route::get('/checkout');
 });
 
 Route::middleware('guest')->group(function () {

@@ -25,17 +25,22 @@ class ItemsController extends Controller
         $items->item_name = request('itemname');
         $items->item_type = request('type');
         $items->price = request('price');
+        $items->quantity = request('quantity');
 
         $request->validate([
             'itemname' => 'required',
             'type' => 'required',
             'price' => 'required|integer',
+            'quantity' => 'required|integer',
             'image' => 'required|image|mimes:jpeg,png,jpg,svg,gif|max:2048'
         ]);
 
         $image = $request->file('image');
 
         $imageName = Str::random(15) .'.'. $image->extension();
+
+        $slug = $items->item_name . ' '. Str::random('6');
+        $slug = Str::slug($slug, '-');
 
         $imageResize = Image::make($image->path());
 
@@ -46,6 +51,7 @@ class ItemsController extends Controller
         $image->move(public_path('upload'), $imageName);
 
         $items->image = $imageName;
+        $items->slug = $slug;
 
         $items->save();
 

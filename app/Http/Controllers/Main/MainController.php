@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 
 class MainController extends Controller
 {
-    public function show(Request $request)
+    public function index(Request $request)
     {
         $pizzas = Items::where('item_type', 'pizza')
                     ->get();
@@ -18,7 +18,7 @@ class MainController extends Controller
 
         $beverages = Items::where('item_type', 'beverages')
                             ->get();
-                            
+
 
         return view('main/menu', [
             'pizzas' => $pizzas,
@@ -26,4 +26,17 @@ class MainController extends Controller
             'beverages' => $beverages
         ]);
     }
+
+    public function show(Request $request)
+    {
+        $itemslug = $request->itemslug;
+        
+        $item = Items::where('slug', $itemslug)
+                        ->first();
+
+        return view('main/item-info', [
+            'item' => $item
+        ]);
+    }
+
 }

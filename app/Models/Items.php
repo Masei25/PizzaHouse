@@ -19,6 +19,7 @@ class Items extends Model
         'item_name',
         'item_type',
         'price',
+        'quantity',
         'image'
     ];
 }

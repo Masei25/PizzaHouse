@@ -140,7 +140,7 @@
                                         <span
                                             class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Available
                                             Quantity</span>
-                                        <span class="flex justify-end text-left lg:block">10</span>
+                                        <span class="flex justify-end text-left lg:block">{{ $item->quantity }}</span>
                                     </td>
                                     <td
                                         class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
@@ -148,14 +148,14 @@
                                             class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Created
                                             At</span>
                                         <span
-                                            class="flex justify-end text-left lg:block">{{ $item->created_at->format('m-d-Y') }}</span>
+                                            class="flex justify-end text-left lg:block">{{ $item->created_at->format('m-d-Y - h:i:s') }}</span>
                                     </td>
                                     <td
                                         class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
                                         <span
                                             class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Action
-                                            At</span>
-                                        <span class="flex space-x-3 text-left">
+                                            </span>
+                                        <span class="flex justify-center space-x-3 text-left">
                                             <a href="">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" class="text-blue-600" viewBox="0 0 16 16">

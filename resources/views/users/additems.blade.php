@@ -77,6 +77,9 @@
                 class="rounded p-2 bg-gray-100 focus:border-yellow-200">
             <input type="text" name="price" id="price" placeholder="Item Price *"
                 class="rounded p-2 bg-gray-100 focus:border-yellow-200">
+            <label for="image">Available Quantity *</label>
+            <input type="number" name="quantity" id="quantity"
+                class="rounded p-2 bg-gray-100 focus:border-yellow-200">
             <label for="image">Upload item image *</label>
             <input type="file" name="image" accept="image/*" id="image"
                 class="rounded p-2 bg-gray-100 focus:border-yellow-200">

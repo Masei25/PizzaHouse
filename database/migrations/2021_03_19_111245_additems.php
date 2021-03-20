@@ -19,7 +19,9 @@ class Additems extends Migration
             $table->string('item_name');
             $table->string('item_type');
             $table->integer('price');
+            $table->integer('quantity');
             $table->string('image');
+            $table->string('slug');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });
