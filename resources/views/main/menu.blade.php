@@ -50,7 +50,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <a href="#url" class="team-title">{{ $pizza->item_name }}</a>
+                                                <a href="{{ route('iteminfo', ['itemslug' => $pizza->slug]) }}" class="team-title">{{ $pizza->item_name }}</a>
                                                 <p class="text-red-500 font-bold">{{ '₦' . $pizza->price }}</p>
                                             </div>
                                         </div>
@@ -88,7 +88,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <a href="#url" class="team-title">{{ $burger->item_name }}</a>
+                                                <a href="{{ route('iteminfo', ['itemslug' => $burger->slug]) }}" class="team-title">{{ $burger->item_name }}</a>
                                                 <p class="text-red-500 font-bold">{{ '₦' . $burger->price }}</p>
                                             </div>
                                         </div>
@@ -127,7 +127,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <a href="#url" class="team-title">{{ $beverage->item_name }}</a>
+                                                <a href="{{ route('iteminfo', ['itemslug' => $beverage->slug]) }}" class="team-title">{{ $beverage->item_name }}</a>
                                                 <p class="text-red-500 font-bold">{{ '₦' . $beverage->price }}</p>
                                             </div>
                                         </div>

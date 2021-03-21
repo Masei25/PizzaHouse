@@ -122,8 +122,7 @@
                                         class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
                                         <span
                                             class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Item
-                                            Type
-                                            Name</span>
+                                            Type</span>
                                         <a class="hover:text-gray-400">
                                             <span
                                                 class="flex justify-end text-left lg:block">{{ $item->item_type }}<span></a>

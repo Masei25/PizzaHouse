@@ -33,57 +33,59 @@
 
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     @if (auth()->user())
-                        <ul class="navbar-nav ml-auto space-x-3">
-                            <li>
-                                <a class="border-2 text-white border-yellow-400 py-1 mt-1 flex rounded p-1 font-medium hover:bg-yellow-400 easy-in-out duration-400"
-                                    href="/users">
-                                    <p class="text-sm text-gray-200">Dashboard</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="border-2 text-white border-yellow-400 py-1 mt-1 flex rounded p-1 font-medium hover:bg-yellow-400 easy-in-out duration-400"
-                                    href="{{ route('additems') }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-5 w-5" viewBox="0 0 16 16">
-                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                                    </svg>
-                                    <p class="text-sm text-gray-200">Add Item</p>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a class="item-center text-gray-800  border-yellow-400 space-x-2 bg-yellow-400 py-1 mt-1 flex rounded p-1.5 font-medium hover:bg-opacity-70 easy-in-out duration-400"
-                                    href="{{ route('logout') }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-5 w-5" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
-                                        <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
-                                    </svg>
-                                    <p class="text-base text-gray-800">Logout</p>
-                                </a>
-                            </li>
-
+                        <ul class="navbar-nav ml-auto flex justify-end space-x-3">
+                            <div class="lg:flex lg:space-x-3 justify-end">
+                                <li class="btn btn-outline-primary w-24 btn-style h-8 mt-1 items-center flex justify-center">
+                                    <a class="flex text-xs"
+                                        href="/users">
+                                       <span> Dashboard</span>
+                                    </a>
+                                </li>
+                                <li class="btn btn-outline-primary w-24 btn-style h-8 mt-1 items-center flex justify-center">
+                                    <a class="flex text-xs space-x-1"
+                                        href="{{ route('additems') }}">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                                       <span>AddItem</span>
+                                    </a>
+                                </li>
+                                <li class="btn btn-primary btn-style w-24 flex items-center h-8 mt-1 justify-center">
+                                    <a class="flex text-xs space-x-1"
+                                        href="{{ route('logout') }}">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                                        <span>Logout</span>
+                                    </a>
+                                </li>
+                            </div>
                         </ul>
                     @else
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                            <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
+                                <a class="nav-link" href="/">Home</a>
                             </li>
-                            <li class="nav-item @@about__active">
-                                <a class="nav-link" href="about.html">About</a>
-                            </li>
-                            <li class="nav-item @@menu__active">
+                            <li class="nav-item {{ request()->is('main') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('menu') }}">Menu</a>
                             </li>
-                            <li class="nav-item @@contact__active">
-                                <a class="nav-link" href="contact.html">Contact</a>
+                            <li class="nav-item {{ request()->is('checkout') ? 'active' : '' }}">
+                                <a class="nav-link" href="">Checkout</a>
                             </li>
-                            <li class="nav-item @@contact__active">
-                                <a class="btn btn-outline-primary btn-style py-1 mt-1"
-                                    href="{{ route('login') }}">Login</a>
+                            <li class="nav-item flex space-x-3 justify-center mr-2">
+                                <a href="" class="flex">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="font-bold h-8 mt-1 text-green-500 hover:text-yellow-500" viewBox="0 0 16 16">
+                                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                    </svg>
+                                    <p class="text-red-500 font-black text-xs mt-2">22</p>
+                                </a>
                             </li>
-                            <li class="nav-item @@contact__active">
-                                <a class="btn btn-primary btn-style mr-2 py-1 mt-1"
-                                    href="{{ route('register') }}">Register</a>
-                            </li>
-
+                            <div class="flex space-x-3 justify-center">
+                                <li class="btn btn-outline-primary w-24 btn-style h-8 mt-1 items-center flex justify-center">
+                                    <a class="text-sm"
+                                        href="{{ route('login') }}">Login</a>
+                                </li>
+                                <li class="btn btn-primary btn-style w-28 flex items-center h-8 mt-1 justify-center">
+                                    <a class="text-sm"
+                                        href="{{ route('register') }}">Register</a>
+                                </li>
+                            </div>
                         </ul>
                     @endif
                 </div>
