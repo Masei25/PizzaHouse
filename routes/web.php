@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\Main\CartController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Users\MainController;
 use App\Http\Controllers\Users\ItemsController;
@@ -27,7 +28,11 @@ Auth::routes();
 Route::namespace('Main')->prefix('main')->middleware('guest')->group(function() {
     Route::get('/', [Main::class, 'index'])->name('menu');
     Route::get('/item-info/{itemslug}', [Main::class, 'show'])->name('iteminfo');
-    Route::get('/checkout');
+
+    Route::prefix('cart')->group(function(){
+        Route::get('addcart/{productid}', [CartController::class, 'add'])->name('addcart');
+        Route::get('/', [CartController::class, 'index'])->name('cartindex');
+    });
 });
 
 Route::middleware('guest')->group(function () {

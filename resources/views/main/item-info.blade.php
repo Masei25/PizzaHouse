@@ -30,12 +30,8 @@
                             <input type="number" name="quanity" id="quantiy" min="1" placeholder="1" class="w-16 bg-white p-1 border-2 text-gray-700 font-medium rounded ">
                         </div>
                         <div class="space-x-4 py-5">
-                            <a href="" class="border-2 border-gray-400 p-2 px-4 cursor-pointer">
-                                Add to Cart
-                            </a>
-                            <a href="" class="bg-green-400 border-2 border-green-400 p-2 px-4 cursor-pointer hover:text-gray-100">
-                                Buy Now
-                            </a>
+                            <a href="{{ route('addcart', $item->id) }}" class="border-2 border-gray-400 p-2 px-4 cursor-pointer">Add to Cart</a>
+                            <input type="submit" name="buy_now" id="buy_now" value="Buy Now" class="bg-green-400 border-2 border-green-400 p-2 px-4 cursor-pointer hover:text-gray-100">
                         </div>
                     </div>
                 </div>

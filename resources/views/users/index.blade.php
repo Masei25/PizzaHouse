@@ -55,7 +55,6 @@
     </div>
 
     <div class="container">
-
         <div class="mx-4 my-10">
             <div class="mb-3">
                 @if (Session::has('success'))
