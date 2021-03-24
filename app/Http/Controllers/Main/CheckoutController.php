@@ -9,6 +9,9 @@ class CheckoutController extends Controller
 {
     public function index()
     {
-        return view('main.cart.checkout');
+        $cartitems = \Cart::session('guest')->getContent();
+        return view('main.cart.checkout', [
+            'cartitems' => $cartitems,
+        ]);
     }
 }
