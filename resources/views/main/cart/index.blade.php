@@ -13,12 +13,21 @@
 
     <div class="container">
         <div class="mx-4 my-10">
-            <div class="mb-3">
-                @if (Session::has('success'))
-                    <p class="text-green-700">{{ Session::get('success') }}</p>
-                @endif
-            </div>
-            <p class="text-lg font-medium">Cart</p>
+            <p class="text-4xl flex justify-center font-medium">Shopping Cart</p>
+            @if (Session::has('success'))
+                <p class="flex items-center justify-center text-green-700 font-medium text-base p-3">
+                    {{ Session::get('success') }}</p>
+            @endif
+            @if (count(\Cart::session('guest')->getContent()) == null)
+                <div class="flex justify-center">
+                    <div class="items-center mt-6 p-10 space-y-6">
+                        <p>Your cart is currently empty.</p>
+                        <div class="flex justify-center">
+                            <a href="{{ route('menu') }}" class="p-2 bg-green-400 text-gray-100">Continue Shopping</a>
+                        </div>
+                    </div>
+                </div>
+            @else
             <div>
                 <div class="mt-4 rounded-lg">
                     <table class="w-full border-collapse rounded-lg">
@@ -46,7 +55,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($items as $item) --}}
+                            @foreach ($cartitems as $cartitem)
                                 <tr
                                     class="flex flex-row flex-wrap mb-10 bg-white lg:hover:bg-gray-100 lg:table-row lg:flex-row lg:flex-no-wrap lg:mb-0">
                                     <td
@@ -56,150 +65,124 @@
                                             Image
                                         </span>
                                         <a class="hover:text-gray-400">
-                                            <span
-                                                class="flex justify-end text-left lg:block"> item<span></a>
+                                            <span class="flex justify-end text-left lg:block"> item<span></a>
                                     </td>
                                     <td
                                         class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
                                         <span
                                             class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Item
-                                            </span>
+                                        </span>
                                         <a class="hover:text-gray-400">
                                             <span
-                                                class="flex justify-end text-left lg:block">Item<span></a>
+                                                class="flex justify-end text-left lg:block">{{ $cartitem->name }}<span></a>
                                     </td>
                                     <td
                                         class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
                                         <span
                                             class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Price
-                                            </span>
-                                        <span class="flex justify-end text-left lg:block">Item</span>
+                                        </span>
+                                        <span class="flex justify-end text-left lg:block">{{ $cartitem->price }}</span>
                                     </td>
                                     <td
                                         class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
                                         <span
                                             class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">
                                             Quantity</span>
-                                        <span class="flex justify-end text-left lg:block">Item</span>
+                                        <span class="flex justify-end text-left lg:block">
+                                            <form action="{{ route('cart.update', $cartitem->id) }}"
+                                                class="flex space-x-4">
+                                                <input type="number" name="quantity" id="quantity"
+                                                    value="{{ $cartitem->quantity }}"
+                                                    class="border p-0.5 items-center text-center w-20">
+                                                <input type="submit" value="Update"
+                                                    class="p-1 bg-blue-400 text-white hover:bg-blue-500 uppercase text-xs">
+                                            </form>
+                                        </span>
                                     </td>
                                     <td
                                         class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
                                         <span
                                             class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Total
-                                            </span>
-                                        <span
-                                            class="flex justify-end text-left lg:block">item</span>
+                                        </span>
+                                        <span class="flex justify-end text-left lg:block">{{ Cart::session('guest')->get($cartitem->id)->getPriceSum() }}</span>
                                     </td>
                                     <td
                                         class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
                                         <span
                                             class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Action
-                                            </span>
+                                        </span>
                                         <span class="flex justify-center space-x-3 text-left">
 
-                                            <a href="">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-red-700" viewBox="0 0 16 16">
-                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                            <a href="{{ route('cart.delete', $cartitem->id) }}">
+                                                <svg class="w-6 h-6 text-red-700" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M6 18L18 6M6 6l12 12"></path>
                                                 </svg>
                                             </a>
                                         </span>
                                     </td>
                                 </tr>
-                            {{-- @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
 
                 </div>
             </div>
 
-            <div class="mt-3 flex justify-between">
+            <div class="mt-3 lg:flex space-y-3 lg:space-y-0 justify-between">
                 <form action="" method="post">
                     <input type="text" name="coupon" id="coupon" class="border p-1 focus:border-blue-200">
-                    <input type="submit" name="" id="" value="APPLY COUPON" class="bg-blue-400 p-1.5 text-xs text-gray-100 border-2 border-blue-400 cursor-pointer hover:bg-blue-500 hover:border-blue-500">
+                    <input type="submit" name="" id="" value="APPLY COUPON"
+                        class="bg-blue-400 p-1.5 text-xs text-gray-100 border-2 border-blue-400 cursor-pointer hover:bg-blue-500 hover:border-blue-500">
                 </form>
-
-                <div>
-                    <input type="submit" name="" id="" value="UPDATE CART" class="bg-blue-400 p-1.5 text-xs text-gray-100 border-2 border-blue-400 cursor-pointer hover:bg-blue-500 hover:border-blue-500">
-                </div>
             </div>
 
             <div>
-                <div class="mt-4 rounded-lg">
-                    <table class="w-full border-collapse rounded-lg">
+                <div class="mt-4 rounded-lg lg:flex justify-end">
+                    <table class="border-collapse rounded-lg w-full lg:w-1/3">
                         <thead>
                             <tr class="bg-red-300">
                                 <th
-                                    class="hidden p-3 text-sm font-medium text-left text-gray-600 bg-gray-100 border border-gray-300 lg:table-cell">
-                                    Total</th>
+                                    class="hidden p-3 text-sm font-medium text-center text-gray-600 bg-gray-100 border border-gray-300 lg:table-cell">
+                                    Cart Total</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($items as $item) --}}
-                                <tr
-                                    class="flex flex-row flex-wrap mb-10 bg-white lg:hover:bg-gray-100 lg:table-row lg:flex-row lg:flex-no-wrap lg:mb-0">
-                                    <td
-                                        class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
-                                        <span
-                                            class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Item
-                                            Image
-                                        </span>
-                                        <a class="hover:text-gray-400">
-                                            <span
-                                                class="flex justify-end text-left lg:block"> item<span></a>
-                                    </td>
-                                    <td
-                                        class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
-                                        <span
-                                            class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Item
-                                            </span>
-                                        <a class="hover:text-gray-400">
-                                            <span
-                                                class="flex justify-end text-left lg:block">Item<span></a>
-                                    </td>
-                                    <td
-                                        class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
-                                        <span
-                                            class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Price
-                                            </span>
-                                        <span class="flex justify-end text-left lg:block">Item</span>
-                                    </td>
-                                    <td
-                                        class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
-                                        <span
-                                            class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">
-                                            Quantity</span>
-                                        <span class="flex justify-end text-left lg:block">Item</span>
-                                    </td>
-                                    <td
-                                        class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
-                                        <span
-                                            class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Total
-                                            </span>
-                                        <span
-                                            class="flex justify-end text-left lg:block">item</span>
-                                    </td>
-                                    <td
-                                        class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
-                                        <span
-                                            class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Action
-                                            </span>
-                                        <span class="flex justify-center space-x-3 text-left">
-
-                                            <a href="">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-red-700" viewBox="0 0 16 16">
-                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                                                </svg>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                            {{-- @endforeach --}}
+                            <tr
+                                class="lg:flex flex-row flex-wrap mb-5 bg-white lg:hover:bg-gray-100 lg:table-row lg:flex-row lg:flex-no-wrap lg:mb-0">
+                                <td
+                                    class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">
+                                    <span
+                                        class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">Cart
+                                        Total
+                                    </span>
+                                    <div class="lg:flex flex-col space-y-4">
+                                        <div class="flex mt-2 justify-between">
+                                            <p class="text-left lg:block text-sm font-bold">Subtotal
+                                            <p>
+                                            <p class="text-base flex justify-end mr-5 font-medium text-green-400">₦ {{ Cart::session('guest')->getSubTotal() }}</p>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <p class=" text-left lg:block text-sm font-bold">Discount
+                                            <p>
+                                            <p class="text-base flex justify-center mr-5 font-medium text-green-400">₦0</p>
+                                        </div>
+                                        <div class="flex justify-between border-t mb-4">
+                                            <p class=" text-left lg:block text-sm font-bold mt-3">Total
+                                            <p>
+                                            <p class="text-base flex justify-center mr-5 font-medium text-green-400 mt-3">₦ {{ Cart::session('guest')->getTotal() }}</p>
+                                        </div>
+                                    </div>
+                                    <a href="{{ route('checkout') }}"
+                                        class="bg-blue-400 mt-4 p-2 text-white hover:bg-blue-500 cursor-pointer uppercase text-xs">Proceed to checkout</a>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 

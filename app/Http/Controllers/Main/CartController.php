@@ -10,7 +10,10 @@ class CartController extends Controller
 {
     public function index()
     {
-        return view('main.cart.index');
+        $cartitems = \Cart::session('guest')->getContent();
+        return view('main.cart.index', [
+            'cartitems' => $cartitems
+        ]);
     }
 
     public function add(Request $request)
@@ -18,15 +21,47 @@ class CartController extends Controller
         $productid = $request->productid;
         $product = Items::find($productid);
 
-        \Cart::session($productid)->add(array(
+        $cart = \Cart::session('guest')->add(array(
             'id' => $productid,
             'name' => $product->item_name,
             'price' => $product->price,
-            'quantity' => 4,
-            // 'attributes' => array(),
+            'quantity' => 1,
+            'attributes' => array(),
             'associatedModel' => $product
         ));
 
+        $condition = new \Darryldecode\Cart\CartCondition(array(
+            'name' => 'VAT 12.5%',
+            'type' => 'tax',
+            'target' => art::session('guest')->getSubTotal(),
+            'value' => 0.5,
+        ));
+
+        Cart::condition($condition);
+        Cart::session('condit')->condition($condition);
+
+        return back()->with('success', 'Item added to cart');
+    }
+
+    public function update(Request $request)
+    {
+        $itemid = $request->itemid;
+        $quantity = request('quantity');
+        \Cart::session('guest')->update($itemid,[
+            'quantity' =>  array(
+                'relative' => false,
+                'value' => request('quantity')
+            )
+        ]);
+
         return back();
+    }
+
+    public function delete(Request $request)
+    {
+        $itemid =  $request->itemid;
+        $cartitem = \Cart::session('guest')->remove($itemid);
+
+        return back()->with('success', 'Item removed from cart');
     }
 }

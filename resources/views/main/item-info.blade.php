@@ -14,6 +14,9 @@
     <section class="w3l-aboutblock1" id="about">
         <div class="midd-w3 py-5">
             <div class="container py-lg-5 py-md-4 py-2">
+                @if (Session::has('success'))
+                    <p class="p-2 flex justify-center text-green-700 font-medium text-base">{{ Session::get('success') }}</p>
+                @endif
                 <div class="lg:grid grid-cols-2 gap-4">
                     <div>
                         <img src="{{ asset('upload/' . $item->image) }}" alt="" class="rounded-md">

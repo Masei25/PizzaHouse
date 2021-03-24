@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Users\MainController;
 use App\Http\Controllers\Users\ItemsController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Main\CheckoutController;
 use App\Http\Controllers\Main\MainController as Main;
 
 /*
@@ -30,8 +31,11 @@ Route::namespace('Main')->prefix('main')->middleware('guest')->group(function() 
     Route::get('/item-info/{itemslug}', [Main::class, 'show'])->name('iteminfo');
 
     Route::prefix('cart')->group(function(){
-        Route::get('addcart/{productid}', [CartController::class, 'add'])->name('addcart');
         Route::get('/', [CartController::class, 'index'])->name('cartindex');
+        Route::get('/addcart/{productid}', [CartController::class, 'add'])->name('addcart');
+        Route::get('/delete/{itemid}', [CartController::class, 'delete'])->name('cart.delete');
+        Route::get('/update/{itemid}', [CartController::class, 'update'])->name('cart.update');
+        Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     });
 });
 
