@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\Main\CartController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Main\OrdersController;
 use App\Http\Controllers\Users\MainController;
 use App\Http\Controllers\Users\ItemsController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -29,6 +30,7 @@ Auth::routes();
 Route::namespace('Main')->prefix('main')->middleware('guest')->group(function() {
     Route::get('/', [Main::class, 'index'])->name('menu');
     Route::get('/item-info/{itemslug}', [Main::class, 'show'])->name('iteminfo');
+    Route::get('/contact', [Main::class, 'contact'])->name('contact');
 
     Route::prefix('cart')->group(function(){
         Route::get('/', [CartController::class, 'index'])->name('cartindex');
@@ -36,6 +38,8 @@ Route::namespace('Main')->prefix('main')->middleware('guest')->group(function() 
         Route::get('/delete/{itemid}', [CartController::class, 'delete'])->name('cart.delete');
         Route::get('/update/{itemid}', [CartController::class, 'update'])->name('cart.update');
         Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+
+        Route::post('orders', [OrdersController::class, 'store'])->name('orders.store');
     });
 });
 

@@ -65,8 +65,8 @@
                             <li class="nav-item {{ request()->is('main') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('menu') }}">Menu</a>
                             </li>
-                            <li class="nav-item {{ request()->is('checkout') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ route('checkout') }}">Checkout</a>
+                            <li class="nav-item {{ request()->is('contact') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('contact') }}">Contact</a>
                             </li>
                             <li class="nav-item flex space-x-3 justify-center mr-2">
                                 <a href="{{ route('cartindex') }}" class="flex">

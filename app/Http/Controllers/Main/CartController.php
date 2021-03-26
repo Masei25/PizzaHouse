@@ -26,19 +26,11 @@ class CartController extends Controller
             'name' => $product->item_name,
             'price' => $product->price,
             'quantity' => 1,
-            'attributes' => array(),
+            'attributes' => array(
+                'image' => $product->image
+            ),
             'associatedModel' => $product
         ));
-
-        $condition = new \Darryldecode\Cart\CartCondition(array(
-            'name' => 'VAT 12.5%',
-            'type' => 'tax',
-            'target' => art::session('guest')->getSubTotal(),
-            'value' => 0.5,
-        ));
-
-        Cart::condition($condition);
-        Cart::session('condit')->condition($condition);
 
         return back()->with('success', 'Item added to cart');
     }

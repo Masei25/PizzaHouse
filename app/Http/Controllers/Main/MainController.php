@@ -30,13 +30,18 @@ class MainController extends Controller
     public function show(Request $request)
     {
         $itemslug = $request->itemslug;
-        
+
         $item = Items::where('slug', $itemslug)
                         ->first();
 
         return view('main/item-info', [
             'item' => $item
         ]);
+    }
+
+    public function contact()
+    {
+        return view('main.contact');
     }
 
 }

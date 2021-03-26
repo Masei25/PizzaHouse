@@ -14,7 +14,8 @@
         <div class="lg:grid grid-cols-2">
             <div class="p-10">
                 <a href="/" class="font-medium text-2xl">Pizza House</a>
-                <form action="" method="POST">
+                <form action="{{ route("orders.store") }}" method="POST">
+                    @csrf
                     <div class="mt-10 space-y-7">
                         <div class="space-y-3">
                             <p class="text-medium">Contact Information</p>
@@ -70,7 +71,7 @@
                             <p class="text-medium">Payment Method</p>
                             <p class="text-gray-600 text-sm">All transactions are secure and encrypted.</p>
                             <input type="text" name="payment" id="payment" placeholder="Email"
-                                class="border p-2 w-full rounded outline-none focus:border-blue-300" required>
+                                class="border p-2 w-full rounded outline-none focus:border-blue-300">
                         </div>
                     </div>
                     <div class="mt-3 flex justify-end">
@@ -82,14 +83,19 @@
             </div>
 
             <div class="bg-gray-100">
-                <div class="p-10 space-y-3">
+                <div class="p-10 space-y-4">
                     @foreach ($cartitems as $cartitem)
                         <div class="flex justify-between border-b">
                             <div>
-                                <p>{{ $cartitem->name }}</p>
-                                <p>color</p>
+                                <div class="flex space-x-2">
+                                    <img src="{{ asset('upload/' . $cartitem->attributes['image']) }}" alt="" class="radius-image rounded-lg w-10 h-10">
+                                    <div>
+                                        <p class="text-gray-600 font-light">{{ $cartitem->name }}</p>
+                                        <p class="text-gray-600 font-light text-sm">Qty: {{ $cartitem->quantity }}  </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="">
+                            <div class="mb-7">
                                 ₦{{ $cartitem->price }}
                             </div>
                         </div>
@@ -115,24 +121,22 @@
                                             </span>
                                             <div class="lg:flex flex-col space-y-4">
                                                 <div class="flex mt-2 justify-between">
-                                                    <p class="text-left lg:block text-sm font-bold">Subtotal
+                                                    <p class="text-left lg:block text-sm font-medium">Subtotal
                                                     <p>
-                                                    <p
-                                                        class="text-base flex justify-end mr-5 font-medium text-green-400">
-                                                        ₦ {{ Cart::session('guest')->getSubTotal() }}</p>
+                                                    <p class="text-sm flex justify-end mr-5 text-green-400">₦
+                                                        {{ Cart::session('guest')->getSubTotal() }}</p>
                                                 </div>
                                                 <div class="flex justify-between">
-                                                    <p class=" text-left lg:block text-sm font-bold">Discount
+                                                    <p class=" text-left lg:block text-sm font-medium">Charges
                                                     <p>
-                                                    <p
-                                                        class="text-base flex justify-center mr-5 font-medium text-green-400">
-                                                        ₦0</p>
+                                                    <p class="text-sm flex justify-center mr-5 text-green-400">₦0
+                                                    </p>
                                                 </div>
                                                 <div class="flex justify-between border-t mb-4">
-                                                    <p class=" text-left lg:block text-sm font-bold mt-3">Total
+                                                    <p class=" text-left lg:block text-sm font-medium mt-3">Total
                                                     <p>
                                                     <p
-                                                        class="text-base flex justify-center mr-5 font-medium text-green-400 mt-3">
+                                                        class="text-sm flex justify-center mr-5 text-green-400 mt-3">
                                                         ₦ {{ Cart::session('guest')->getTotal() }}</p>
                                                 </div>
                                             </div>
