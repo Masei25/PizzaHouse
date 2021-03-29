@@ -14,9 +14,19 @@
         <div class="lg:grid grid-cols-2">
             <div class="p-10">
                 <a href="/" class="font-medium text-2xl">Pizza House</a>
-                <form action="{{ route("orders.store") }}" method="POST">
+                <form action="{{ route('orders.store') }}" method="POST">
                     @csrf
-                    <div class="mt-10 space-y-7">
+                    <div class="mt-3">
+                        @if ($errors->any())
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li class="text-red-700 mb-2">{{ $error }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
+                    </div>
+                    <div class="mt-8 space-y-7">
                         <div class="space-y-3">
                             <p class="text-medium">Contact Information</p>
                             <input type="text" name="email" id="email" placeholder="Email"
@@ -51,7 +61,7 @@
                                         data-region-id="one" data-whitelist="NG"></select>
                                 </div>
                                 <div>
-                                    <select name="states" id="one"
+                                    <select name="state" id="one"
                                         class="border p-2 w-full rounded outline-none focus:border-blue-300"
                                         data-blank-option="Select Region">
                                     </select>
@@ -70,13 +80,17 @@
                         <div class="space-y-3">
                             <p class="text-medium">Payment Method</p>
                             <p class="text-gray-600 text-sm">All transactions are secure and encrypted.</p>
-                            <input type="text" name="payment" id="payment" placeholder="Email"
-                                class="border p-2 w-full rounded outline-none focus:border-blue-300">
+                            <select name="payment" id="payment"
+                                class="border p-2 w-48 rounded outline-none focus:border-blue-300">
+                                <option value="cash" disabled selected>Select payment type</option>
+                                <option value="pay_on_delivery">Pay on Delivery</option>
+                                <option value="card">Card Payment</option>
+                            </select>
                         </div>
                     </div>
                     <div class="mt-3 flex justify-end">
                         <input type="submit" value="Complete Order" placeholder="Email"
-                            class="border p-2 bg-blue-600 w-40 text-gray-100 rounded outline-none focus:border-blue-300"
+                            class="border p-2 bg-blue-600 w-40 text-gray-100 rounded outline-none focus:border-blue-300 cursor-pointer"
                             required>
                     </div>
                 </form>
@@ -88,10 +102,12 @@
                         <div class="flex justify-between border-b">
                             <div>
                                 <div class="flex space-x-2">
-                                    <img src="{{ asset('upload/' . $cartitem->attributes['image']) }}" alt="" class="radius-image rounded-lg w-10 h-10">
+                                    <img src="{{ asset('upload/' . $cartitem->attributes['image']) }}" alt=""
+                                        class="radius-image rounded-lg w-10 h-10">
                                     <div>
                                         <p class="text-gray-600 font-light">{{ $cartitem->name }}</p>
-                                        <p class="text-gray-600 font-light text-sm">Qty: {{ $cartitem->quantity }}  </p>
+                                        <p class="text-gray-600 font-light text-sm">Qty: {{ $cartitem->quantity }}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -135,8 +151,7 @@
                                                 <div class="flex justify-between border-t mb-4">
                                                     <p class=" text-left lg:block text-sm font-medium mt-3">Total
                                                     <p>
-                                                    <p
-                                                        class="text-sm flex justify-center mr-5 text-green-400 mt-3">
+                                                    <p class="text-sm flex justify-center mr-5 text-green-400 mt-3">
                                                         ₦ {{ Cart::session('guest')->getTotal() }}</p>
                                                 </div>
                                             </div>

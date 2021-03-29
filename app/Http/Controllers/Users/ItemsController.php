@@ -37,7 +37,7 @@ class ItemsController extends Controller
 
         $image = $request->file('image');
 
-        $imageName = Str::random(15) .'.'. $image->extension();
+        $imageName = unique() .'.'. $image->extension();
 
         $slug = $items->item_name . ' '. Str::random('6');
         $slug = Str::slug($slug, '-');

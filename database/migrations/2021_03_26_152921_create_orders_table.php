@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrderTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateOrderTable extends Migration
      */
     public function up()
     {
-        Schema::create('order', function (Blueprint $table) {
-            $table->id();
+        Schema::create('orders', function (Blueprint $table) {
+            $table->bigIncrements('id');
 
             $table->string('order_number');
             $table->enum('status', ['pending', 'processing', 'completed', 'declined']);
@@ -23,23 +23,24 @@ class CreateOrderTable extends Migration
             $table->boolean('is_paid')->default(false);
             $table->enum('payment_method', ['pay_on_delivery', 'card'])->default('pay_on_delivery');
 
+            $table->string('shipping_email');
             $table->string('shipping_firstname');
             $table->string('shipping_lastname');
             $table->string('shipping_address');
-            $table->string('shipping_apartment')->nullable;
+            $table->string('shipping_apartment')->nullable();
             $table->string('shipping_city');
             $table->string('shipping_country');
             $table->string('shipping_state');
             $table->string('shipping_postal');
             $table->string('shipping_phone');
 
-            $table->string('billing_fullname');
-            $table->string('billing_address');
-            $table->string('billing_city');
-            $table->string('billing_country');
-            $table->string('billing_state');
-            $table->string('billing_postal');
-            $table->string('billing_phone');
+            // $table->string('billing_fullname');
+            // $table->string('billing_address');
+            // $table->string('billing_city');
+            // $table->string('billing_country');
+            // $table->string('billing_state');
+            // $table->string('billing_postal');
+            // $table->string('billing_phone');
 
             $table->timestamps();
         });
