@@ -49,7 +49,7 @@ class OrdersController extends Controller
         $cartItems = \Cart::session('guest')->getContent();
 
         //to update the item quantity left in db
-        foreach($cartItems as $item){
+        foreach($cartItems as $item) {
             $itemleft = $item->attributes['itemquantity'];
             $qty_ordered = $item->quantity;
             $newQty =$itemleft - $qty_ordered;
@@ -58,12 +58,12 @@ class OrdersController extends Controller
         }
 
         //attach each item for checkout
-        foreach($cartItems as $item){
+        foreach($cartItems as $item) {
             $order->items()->attach($item->id, ['price' => $item->price, 'quantity' => $item->quantity]);
         }
 
         //initiate rave payment
-        if($order->payment_method == 'card'){
+        if($order->payment_method == 'card') {
             $res = initPayment(
                 $order->grand_total,
                 ['email' => $order->shipping_email,
@@ -93,6 +93,5 @@ class OrdersController extends Controller
         //empty the cart
         // \Cart::clear();
         // \Cart::session('guest')->clear();
-
     }
 }

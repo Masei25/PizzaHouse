@@ -38,7 +38,14 @@ class PaymentController extends Controller
                 $amountCharged = $res->data->meta->price;
                 if($amount >= $amountCharged)
                 {
-                    updateTransaction();
+                    Transactions::create([
+                        'order_number' => $order_id,
+                        'amount' => $amount,
+                        'charged_amount' => $amountCharged,
+                        'trans_id' => $res->data->id,
+                        'trans_ref' => $res->data->tx_ref,
+                        'flw_ref' => $res->data->flw_ref
+                    ]);
 
                     Orders::where('order_number', $order_id)
                     ->update([
@@ -46,14 +53,22 @@ class PaymentController extends Controller
                         'is_paid' => true
                     ]);
 
-                    return view('main.cart.checkout', [
+                    return view('main.cart.order-completed', [
                         'order_number' => $order_id,
+                        'payment_type' => $res->data->narration
                     ]);
                 }
 
                 if(!($amountPaid >= $amountCharged))
                 {
-                    updateTransaction();
+                    Transactions::create([
+                        'order_number' => $order_id,
+                        'amount' => $amount,
+                        'charged_amount' => $amountCharged,
+                        'trans_id' => $res->data->id,
+                        'trans_ref' => $res->data->tx_ref,
+                        'flw_ref' => $res->data->flw_ref
+                    ]);
 
                     Orders::where('order_number', $order_id)
                     ->update(['status' => 'amount conflict']);

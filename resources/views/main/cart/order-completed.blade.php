@@ -9,11 +9,11 @@
     <title>Order Completed</title>
 </head>
 <body>
-    <section class="container py-16 flex justify-center text-center space-y-3">
-        <div class="mt-15 space-y-5">
+    <section class="container py-16 flex justify-center text-center items-center space-y-3">
+        <div class="mt-16 space-y-5">
             <p class="text-2xl font-medium">Order Confirmation</p>
             <p class="flex justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="flex justify-center text-green-500" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="flex justify-center text-green-500" viewBox="0 0 16 16">
                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                 </svg>
             </p>
