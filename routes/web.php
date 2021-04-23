@@ -1,12 +1,15 @@
 <?php
 
+use App\Mail\CheckoutMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\Main\CartController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Main\OrdersController;
 use App\Http\Controllers\Users\MainController;
+use App\Http\Controllers\Main\OrdersController;
 use App\Http\Controllers\Users\ItemsController;
+use App\Http\Controllers\Main\PaymentController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Main\CheckoutController;
 use App\Http\Controllers\Main\MainController as Main;
@@ -24,8 +27,12 @@ use App\Http\Controllers\Main\MainController as Main;
 
 Route::get('/', [IndexController::class, 'show'])->middleware('guest');
 
-
 Auth::routes();
+
+Route::get('/emails', function (){
+    Mail::to('email@gmail.com')->send(new CheckoutMail());
+    return new CheckoutMail();
+})->middleware('guest');
 
 Route::namespace('Main')->prefix('main')->middleware('guest')->group(function() {
     Route::get('/', [Main::class, 'index'])->name('menu');
@@ -38,8 +45,14 @@ Route::namespace('Main')->prefix('main')->middleware('guest')->group(function() 
         Route::get('/delete/{itemid}', [CartController::class, 'delete'])->name('cart.delete');
         Route::get('/update/{itemid}', [CartController::class, 'update'])->name('cart.update');
         Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+        Route::get('/order-completed', [CheckoutController::class, 'order_completed'])->name('order.completed');
 
         Route::post('orders', [OrdersController::class, 'store'])->name('orders.store');
+
+        //payment
+        Route::get('pay_status/{orderId}', [PaymentController::class, 'ravePay'])->name('pay.status');
+        Route::get('paypal/checkout-success', [PaymentController::class, 'payPalCheckoutSuccess'])->name('paypal.success');
+        Route::get('paypal/checkout-cancel', [PaymentController::class, 'payPalCheckoutCancel'])->name('paypal.cancel');
     });
 });
 

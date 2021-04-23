@@ -15,4 +15,9 @@ class CheckoutController extends Controller
             'cartitems' => $cartitems,
         ]);
     }
+
+    public function order_completed()
+    {
+        return view('main.cart.order-completed');
+    }
 }

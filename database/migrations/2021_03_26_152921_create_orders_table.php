@@ -17,11 +17,11 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('order_number');
-            $table->enum('status', ['pending', 'processing', 'completed', 'declined']);
+            $table->string('status')->default('pending');
             $table->float('grand_total');
             $table->integer('item_count');
             $table->boolean('is_paid')->default(false);
-            $table->enum('payment_method', ['pay_on_delivery', 'card'])->default('pay_on_delivery');
+            $table->enum('payment_method', ['pay_on_delivery', 'card', 'paypal'])->default('pay_on_delivery');
 
             $table->string('shipping_email');
             $table->string('shipping_firstname');
@@ -33,14 +33,6 @@ class CreateOrdersTable extends Migration
             $table->string('shipping_state');
             $table->string('shipping_postal');
             $table->string('shipping_phone');
-
-            // $table->string('billing_fullname');
-            // $table->string('billing_address');
-            // $table->string('billing_city');
-            // $table->string('billing_country');
-            // $table->string('billing_state');
-            // $table->string('billing_postal');
-            // $table->string('billing_phone');
 
             $table->timestamps();
         });

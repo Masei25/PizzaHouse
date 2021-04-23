@@ -17,10 +17,16 @@
                 <form action="{{ route('orders.store') }}" method="POST">
                     @csrf
                     <div class="mt-3">
+                        @if (Session::has('error'))
+                            <p class="text-red-600 font-medium">{{ Session::get('error') }}</p>
+                        @endif
+                        @if (Session::has('success'))
+                            <p class="text-green-600 font-medium">{{ Session::get('success') }}</p>
+                        @endif
                         @if ($errors->any())
                             <ul>
                                 @foreach ($errors->all() as $error)
-                                    <li class="text-red-700 mb-2">{{ $error }}
+                                    <li class="text-red-700 font-medium mb-2">{{ $error }}
                                     </li>
                                 @endforeach
                             </ul>

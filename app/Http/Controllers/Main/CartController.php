@@ -27,7 +27,9 @@ class CartController extends Controller
             'price' => $product->price,
             'quantity' => 1,
             'attributes' => array(
-                'image' => $product->image
+                'image' => $product->image,
+                'slug' => $product->slug,
+                'itemquantity' => $product->quantity
             ),
             'associatedModel' => $product
         ));

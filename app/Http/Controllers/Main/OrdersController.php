@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Main;
 
+use App\Models\Items;
 use App\Models\Orders;
 use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
@@ -26,8 +27,7 @@ class OrdersController extends Controller
         ]);
 
         $order = new Orders();
-
-        $order->order_number = uniqid('PH-');
+        $order->order_number = uniqid('PH');
 
         $order->shipping_email = $request->input('email');
         $order->shipping_firstname = $request->input('firstname');
@@ -48,14 +48,51 @@ class OrdersController extends Controller
 
         $cartItems = \Cart::session('guest')->getContent();
 
+        //to update the item quantity left in db
+        foreach($cartItems as $item){
+            $itemleft = $item->attributes['itemquantity'];
+            $qty_ordered = $item->quantity;
+            $newQty =$itemleft - $qty_ordered;
+            Items::where('slug', $item->attributes['slug'])
+                    ->update(['quantity' => $newQty]);
+        }
+
+        //attach each item for checkout
         foreach($cartItems as $item){
             $order->items()->attach($item->id, ['price' => $item->price, 'quantity' => $item->quantity]);
         }
 
-        //empty the cart
-        \Cart::clear();
-        \Cart::session('guest')->clear();
+        //initiate rave payment
+        if($order->payment_method == 'card'){
+            $res = initPayment(
+                $order->grand_total,
+                ['email' => $order->shipping_email,
+                'name' => $order->shipping_firstname.' '.$order->shipping_lastname
+                ],
+                ['price' => $order->grand_total],
+                ['title' => 'Pizza House',
+                'description' => 'Paying for item'],
+                $order->order_number
+            );
 
-        dd($order->items());
+            if($res->status == "success"){
+                $link = $res->data->link;
+                return redirect($link);
+            }
+
+            return back()->with('error', 'Unable to process your payment!!!');
+        }
+
+        if($order->payment_method == 'pay_on_delivery') {
+            return view('main.cart.order-completed', [
+                'order_number' => $order->order_number,
+                'payment_type' => $order->payment_method
+            ]);
+        }
+
+        //empty the cart
+        // \Cart::clear();
+        // \Cart::session('guest')->clear();
+
     }
 }
