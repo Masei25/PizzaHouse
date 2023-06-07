@@ -34,7 +34,7 @@ Route::get('/emails', function (){
     return new CheckoutMail();
 })->middleware('guest');
 
-Route::namespace('Main')->prefix('main')->middleware('guest')->group(function() {
+Route::namespace('Main')->prefix('menu')->group(function() {
     Route::get('/', [Main::class, 'index'])->name('menu');
     Route::get('/item-info/{itemslug}', [Main::class, 'show'])->name('iteminfo');
     Route::get('/contact', [Main::class, 'contact'])->name('contact');
@@ -65,10 +65,13 @@ Route::middleware('guest')->group(function () {
 
 });
 
-Route::namespace('Users')->prefix('users')->middleware('users')->group(function () {
-    Route::get('/', [MainController::class, 'show']);
+Route::namespace('Users')->prefix('dashboard')->middleware('users')->group(function () {
+    Route::get('/', [MainController::class, 'show'])->name('dashboard.show');
     Route::get('/additems', [ItemsController::class, 'index'])->name('additems');
     Route::post('/additems', [ItemsController::class, 'store']);
+    
+    Route::get('/edit/{slug}', [ItemsController::class, 'edit'])->name('edit.item');
+    Route::post('/edit/{slug}', [ItemsController::class, 'update']);
 });
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
