@@ -21,6 +21,10 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
+## About Pizza House
+PizzaHouse is developed to address the challenges faced by food vendors in reaching a broader clients and effectively marketing their products. This web application serves as a platform where vendors can list their food items, including burgers, pizzas, and drinks, making them accessible to potential buyers. Buyers can browse through these listings, select the items they desire, and conveniently make payments using the integrated online payment system. Additionally, the platform offer the option of 'pay on delivery' for added flexibility and convenience. PizzaHouse aims to bridge the gap between vendors and customers, providing a seamless and efficient way for both parties to connect and engage in food transactions.
+
+
 ## Learning Laravel
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
@@ -60,3 +64,4 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
