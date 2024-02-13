@@ -30,6 +30,8 @@ class MainController extends Controller
     {
         $itemslug = $request->itemslug;
 
+        // $seller = User::where()
+
         $item = Items::where('slug', $itemslug)
                         ->first();
 

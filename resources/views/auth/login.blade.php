@@ -32,8 +32,12 @@
                             <form action="" method="post" class="text-right">
                                 @csrf
                                 <div class="w-1/2 space-y-5">
-                                    <input type="text" name="email" id="email" placeholder="Email*" required="">
-                                    <input type="password" name="password" id="password" placeholder="Password*" required>
+
+                                    <input type="text" name="email" id="email" placeholder="Email*"
+                                        class="border p-2 rounded-md">
+
+                                    <input type="password" name="password" id="password" placeholder="Password*"
+                                        class="border p-2 rounded-md">
                                 </div>
                                 <button type="submit"
                                     class="btn btn-primary btn-style mt-3 flex justify-left">Submit</button>
@@ -42,8 +46,7 @@
                         <div class="col-lg-4 cont-details">
                             <address>
                                 <h5 class="mt-md-5 mt-4">Contact Address</h5>
-                                <p><span class="fa fa-map-marker"></span>Burger Bun, 208 Trainer Avenue street, Corner
-                                    Market, NY - 62617. </p>
+                                <p><span class="fa fa-map-marker"></span>Burger Bun, 208 Trainer Avenue, London, UK.</p>
                                 <p> <a href="mailto:info@example.com"><span
                                             class="fa fa-envelope"></span>info@example.com</a></p>
                                 <p><span class="fa fa-phone"></span><a href="tel:+12 5348943649"> +12 534894364</a></p>

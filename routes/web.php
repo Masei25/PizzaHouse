@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\Main\CartController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Users\MainController;
+use App\Http\Controllers\Sellers\MainController;
 use App\Http\Controllers\Main\OrdersController;
-use App\Http\Controllers\Users\ItemsController;
+use App\Http\Controllers\Sellers\ItemsController;
 use App\Http\Controllers\Main\PaymentController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Main\CheckoutController;
@@ -65,13 +65,15 @@ Route::middleware('guest')->group(function () {
 
 });
 
-Route::namespace('Users')->prefix('dashboard')->middleware('users')->group(function () {
+Route::namespace('Sellers')->prefix('dashboard')->middleware('users')->group(function () {
     Route::get('/', [MainController::class, 'show'])->name('dashboard.show');
     Route::get('/additems', [ItemsController::class, 'index'])->name('additems');
     Route::post('/additems', [ItemsController::class, 'store']);
     
     Route::get('/edit/{slug}', [ItemsController::class, 'edit'])->name('edit.item');
     Route::post('/edit/{slug}', [ItemsController::class, 'update']);
+
+    Route::get('/delete/{slug}', [ItemsController::class, 'delete'])->name('item.delete');
 });
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

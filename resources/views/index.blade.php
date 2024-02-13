@@ -15,8 +15,8 @@
                     fugit odit? Fugit ipsam. Sed ac ex. Nam mauris velit, ac
                     cursus quis, leo.</p>
                 <div class="mt-md-5 mt-4">
-                    <a class="btn btn-primary btn-style mr-2" href="{{route('menu')}}"> See Menu </a>
-                    <a class="btn btn-outline-primary btn-style" href="{{route('menu')}}"> Order a Pizza </a>
+                    {{-- <a class="btn btn-primary btn-style mr-2" href="{{route('menu')}}"> See Menu </a> --}}
+                    <a class="btn btn-outline-primary btn-style" href="{{route('menu')}}"> Check Our Menu </a>
                 </div>
             </div>
             <div class="col-lg-5">

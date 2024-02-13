@@ -150,10 +150,9 @@
                         <h3>Contact Us</h3>
                     </div>
                     <div class="footer-text mt-4">
-                        <p><strong>Address :</strong> Burger Bun, 208 Trainer Avenue street, Corner
-                            Market, NY - 62617.</p>
-                        <p class="my-2"><strong>Phone :</strong> <a href="tel:+12 534894364">+12 534894364</a></p>
-                        <p><strong>Email :</strong> <a href="mailto:info@example.com">info@example.com</a></p>
+                        <p><strong>Address :</strong> Edmonton Greenm, London, UK.</p>
+                        <p class="my-2"><strong>Phone :</strong> <a href="tel:+12 534894364">+4401234567</a></p>
+                        <p><strong>Email :</strong> <a href="mailto:info@example.com">info@pizzahouse.com</a></p>
                     </div>
                     <div class="footer-title mt-4 pt-md-2">
                         <h3>Payments we accept</h3>

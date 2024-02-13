@@ -19,38 +19,60 @@
                         <div class="col-lg-8">
                             <h3 class="title-big">Sign up with us</h3>
                             <p class="mb-4 mt-lg-0 mt-2">Required fields are marked *</p>
-                            <div class="mb-3">
-                                @if ($errors->any())
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li class="text-red-800 mb-5">{{ $error }}
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                @endif
-                            </div>
+
                             <form action="" method="post" class="text-right">
                                 @csrf
                                 <div class="w-1/2 space-y-3">
-                                    <input type="text" name="firstname" id="firstname" placeholder="First Name*" required="">
-                                    <input type="text" name="lastname" id="lastname" placeholder="Last Name*" required="">
-                                    <input type="email" name="email" id="email" placeholder="Email*" required="">
-                                    <input type="password" name="password" id="password" placeholder="Password*" required>
-                                    <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password"
-                                        required>
+                                    @error('firstname')
+                                        <p class="text-red-800 text-sm">{{ $message }}</p>
+                                    @enderror
+                                    <input type="text" name="firstname" id="firstname" placeholder="First Name*"
+                                        class="border p-2 rounded-md">
+
+                                    @error('lastname')
+                                        <p class="text-red-800 text-sm">{{ $message }}</p>
+                                    @enderror
+                                    <input type="text" name="lastname" id="lastname" placeholder="Last Name*"
+                                        class="border p-2 rounded-md">
+
+                                    @error('user_type')
+                                        <p class="text-red-800 text-sm">{{ $message }}</p>
+                                    @enderror
+                                    <select name="user_type" id=""
+                                        class="border rounded-md bg-gray-100 p-2 w-full">
+                                        <option selected disabled class="font-bold">Select a user type*</option>
+                                        <option value="seller">Seller</option>
+                                        <option value="buyer">Buyer</option>
+                                    </select>
+
+                                    @error('email')
+                                        <p class="text-red-800 text-sm">{{ $message }}</p>
+                                    @enderror
+                                    <input type="email" name="email" id="email" placeholder="Email*"
+                                        class="border p-2 rounded-md">
+
+                                    @error('password')
+                                        <p class="text-red-800 text-sm">{{ $message }}</p>
+                                    @enderror
+                                    <input type="password" name="password" id="password" placeholder="Password*"
+                                        class="border p-2 rounded-md">
+                                    <input type="password" name="password_confirmation" id="password_confirmation"
+                                        placeholder="Confirm Password" class="border p-2 rounded-md">
                                 </div>
                                 <button type="submit"
-                                    class="btn btn-primary btn-style mt-3 flex justify-left">Submit</button>
+                                    class="btn btn-primary btn-style mt-3 flex justify-left p-2 rounded-md">Submit</button>
                             </form>
+
+
+
                         </div>
                         <div class="col-lg-4 cont-details">
                             <address>
                                 <h5 class="mt-md-5 mt-4">Contact Address</h5>
-                                <p><span class="fa fa-map-marker"></span>Burger Bun, 208 Trainer Avenue street, Corner
-                                    Market, NY - 62617. </p>
+                                <p><span class="fa fa-map-marker"></span>Burger Bun, 208 Trainer Avenue, London, UK. </p>
                                 <p> <a href="mailto:info@example.com"><span
-                                            class="fa fa-envelope"></span>info@example.com</a></p>
-                                <p><span class="fa fa-phone"></span><a href="tel:+12 5348943649"> +12 534894364</a></p>
+                                            class="fa fa-envelope"></span>info@pizzahouse.com</a></p>
+                                <p><span class="fa fa-phone"></span><a href="tel:+12 5348943649"> +4412345678</a></p>
 
                                 <h5 class="mt-4 mb-3">Opening Hours</h5>
                                 <div class="hours">

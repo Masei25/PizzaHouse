@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Users;
+namespace App\Http\Controllers\Sellers;
 
 use App\Models\Items;
 use Illuminate\Http\Request;
@@ -12,12 +12,9 @@ class MainController extends Controller
     {
         $user = $request->user();
 
-        $items = Items::where('userid', $user->id)
-                            ->get();
-
-        return view('users/index', [
-            'items' => $items
-        ]);
+        $items = Items::where('userid', $user->id)->get();
+        
+        return view('users/index', ['items' => $items]);
     }
 
 

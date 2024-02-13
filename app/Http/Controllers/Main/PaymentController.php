@@ -16,6 +16,7 @@ class PaymentController extends Controller
     protected static function ravePay(Request $request, Response $response)
     {
         $url = request('status');
+        dd($url);
 
         $order_id = $request->url();
         $order_id = explode('/', $order_id);

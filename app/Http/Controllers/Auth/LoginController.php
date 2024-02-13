@@ -26,15 +26,29 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function show(Request $resquest)
+    public function show(Request $request)
     {
-        $user  = $this->validate($resquest, [
+        $user  = $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required'
         ]);
 
         if(Auth::attempt($user)){
-            return redirect()->route('dashboard.show');
+            if($request->user()->user_type == 'seller') {
+                return redirect()->route('dashboard.show');
+            }
+
+            if($request->user()->user_type == 'buyer') {
+                Auth::logout();
+                return back()->with('error', "Buyer's dashboard coming soon");
+            }
+        }
+
+        // dd('ehlloo');
+        dd((Auth::attempt($user) && ($request->user()->user_type == 'seller')));
+
+        if ((Auth::attempt($user) && ($request->user()->user_type == 'seller'))) {
+            dd('required');
         }
 
         return back()->with('error', 'Invalid login credentials');

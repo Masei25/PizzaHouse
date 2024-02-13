@@ -20,6 +20,7 @@
                 <div class="lg:grid grid-cols-2 gap-4">
                     <div>
                         <img src="{{ asset('upload/' . $item->image) }}" alt="" class="rounded-md">
+                        <span class="text-gray-500">Seller : </span>
                     </div>
                     <div action="" class="mx-3 space-y-2">
                         <div>
@@ -34,8 +35,7 @@
                         </div>
                         <div class="space-x-4 py-5">
                             <a href="{{ route('addcart', $item->id) }}" class="border-2 border-gray-400 p-2 px-4 cursor-pointer">Add to Cart</a>
-                            <input type="submit" name="buy_now" id="buy_now" value="Buy Now" class="bg-green-400 border-2 border-green-400 p-2 px-4 cursor-pointer hover:text-gray-100">
-                        </div>
+                            <a href="{{ route('addcart', $item->id) }}" class="bg-green-400 border-2 border-green-400 p-2 px-4 cursor-pointer hover:text-gray-100">Buy Now</a>                        </div>
                     </div>
                 </div>
             </div>
