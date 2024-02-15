@@ -64,7 +64,7 @@
                                 <div>
                                     <select name="country" id="country"
                                         class="crs-country border p-2 w-full rounded outline-none focus:border-blue-300"
-                                        data-region-id="one" data-whitelist="NG"></select>
+                                        data-region-id="one" data-whitelist="GB"></select>
                                 </div>
                                 <div>
                                     <select name="state" id="one"
@@ -95,7 +95,7 @@
                         </div>
                     </div>
                     <div class="mt-3 flex justify-end">
-                        <input type="submit" value="Complete Order" placeholder="Email"
+                        <input type="submit" value="Complete Order"
                             class="border p-2 bg-blue-600 w-40 text-gray-100 rounded outline-none focus:border-blue-300 cursor-pointer"
                             required>
                     </div>
@@ -112,8 +112,19 @@
                                         class="radius-image rounded-lg w-10 h-10">
                                     <div>
                                         <p class="text-gray-600 font-light">{{ $cartitem->name }}</p>
-                                        <p class="text-gray-600 font-light text-sm">Qty: {{ $cartitem->quantity }}
-                                        </p>
+                                        <div class="text-gray-600 font-light text-sm flex">Qty:
+                                            <div>
+                                                <span class="flex justify-end text-left lg:block">
+                                                    <form action="{{ route('cart.update', $cartitem->id) }}" class="flex space-x-4" id="updateForm">
+                                                        <input type="number" name="quantity" id="quantity" value="{{ $cartitem->quantity }}" class="border p-0.5 items-center text-center w-20">
+                                                        <!-- Remove the submit button -->
+                                                    </form>
+                                                </span>
+                                            </div>
+                                        </div>
+                                            
+
+
                                     </div>
                                 </div>
                             </div>

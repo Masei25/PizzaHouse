@@ -11,6 +11,7 @@ class CartController extends Controller
     public function index()
     {
         $cartitems = \Cart::session('guest')->getContent();
+        
         return view('main.cart.index', [
             'cartitems' => $cartitems
         ]);

@@ -70,29 +70,25 @@
                             </div>
                             <div class="row team-row mt-md-5 mt-5">
                                 @foreach ($burgers as $burger)
-                                    <a href="{{ route('iteminfo', ['itemslug' => $burger->slug]) }}">
-                                        <div class="col-lg-3 col-6 team-wrap">
-                                            <div class="team-member text-center">
-                                                <div class="team-img">
-                                                    <img src="{{ asset('upload/' . $burger->image) }}" alt=""
-                                                        class="radius-image h-60">
-                                                    <div class="overlay-team">
-                                                        <div class="team-details text-center">
-                                                            <div class="p-2">
-                                                                <a href="{{ route('iteminfo', ['itemslug' => $burger->slug])}}" class="rounded">
-                                                                    <span
-                                                                        class="rounded-full text-sm px-5 bg-yellow-500 p-4 text-gray-800 hover:bg-opacity-75">Buy
-                                                                        Now</span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
+                                <div class="col-lg-3 col-6 team-wrap">
+                                    <div class="team-member text-center">
+                                        <div class="team-img">
+                                            <img src="{{ asset('upload/' . $burger->image) }}" alt="" class="radius-image h-60">
+                                            <div class="overlay-team">
+                                                <div class="team-details text-center">
+                                                    <div class="p-2">
+                                                        <a href="{{ route('iteminfo', ['itemslug' => $burger->slug]) }}" class="rounded">
+                                                            <span class="rounded-full text-sm px-5 bg-yellow-500 p-4 text-gray-800 hover:bg-opacity-75">Buy Now</span>
+                                                        </a>
                                                     </div>
                                                 </div>
-                                                <a href="{{ route('iteminfo', ['itemslug' => $burger->slug]) }}" class="team-title">{{ $burger->item_name }}</a>
-                                                <p class="text-red-500 font-bold">{{ '₦' . $burger->price }}</p>
                                             </div>
                                         </div>
-                                    </a>
+                                        <a href="{{ route('iteminfo', ['itemslug' => $burger->slug]) }}" class="team-title">{{ $burger->item_name }}</a>
+                                        <p class="text-red-500 font-bold">{{ '₦' . $burger->price }}</p>
+                                    </div>
+                                </div>
+                                
                                 @endforeach
                                 <!-- end team member -->
                             </div>

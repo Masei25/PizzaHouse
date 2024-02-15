@@ -44,7 +44,7 @@ Route::namespace('Main')->prefix('menu')->group(function() {
         Route::get('/addcart/{productid}', [CartController::class, 'add'])->name('addcart');
         Route::get('/delete/{itemid}', [CartController::class, 'delete'])->name('cart.delete');
         Route::get('/update/{itemid}', [CartController::class, 'update'])->name('cart.update');
-        Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+        Route::get('/checkout/{itemSlug?}', [CheckoutController::class, 'index'])->name('checkout');
         Route::get('/order-completed', [CheckoutController::class, 'order_completed'])->name('order.completed');
 
         Route::post('orders', [OrdersController::class, 'store'])->name('orders.store');
@@ -67,6 +67,10 @@ Route::middleware('guest')->group(function () {
 
 Route::namespace('Sellers')->prefix('dashboard')->middleware('users')->group(function () {
     Route::get('/', [MainController::class, 'show'])->name('dashboard.show');
+
+    Route::get('/profile/{userid}', [MainController::class, 'showProfile'])->name('profile.show');
+    Route::post('/profile/{userid}', [MainController::class, 'updateProfile']);
+
     Route::get('/additems', [ItemsController::class, 'index'])->name('additems');
     Route::post('/additems', [ItemsController::class, 'store']);
     

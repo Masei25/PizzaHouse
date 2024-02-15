@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Main;
 
+use App\Models\User;
 use App\Models\Items;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -26,18 +27,13 @@ class MainController extends Controller
         ]);
     }
 
-    public function show(Request $request)
+    public function show($itemslug)
     {
-        $itemslug = $request->itemslug;
+        $item = Items::where('slug', $itemslug)->first();
 
-        // $seller = User::where()
+        $seller = User::where('id', $item->userid)->first();
 
-        $item = Items::where('slug', $itemslug)
-                        ->first();
-
-        return view('main/item-info', [
-            'item' => $item
-        ]);
+        return view('main/item-info', compact('item', 'seller'));
     }
 
     public function contact()

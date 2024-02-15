@@ -102,16 +102,12 @@
                                             <span
                                                 class="absolute top-0 left-0 px-2 py-1 text-xs font-bold uppercase bg-blue-200 lg:hidden">
                                                 Quantity</span>
-                                            <span class="flex justify-end text-left lg:block">
-                                                <form action="{{ route('cart.update', $cartitem->id) }}"
-                                                    class="flex space-x-4">
-                                                    <input type="number" name="quantity" id="quantity"
-                                                        value="{{ $cartitem->quantity }}"
-                                                        class="border p-0.5 items-center text-center w-20">
-                                                    <input type="submit" value="Update"
-                                                        class="p-1 bg-blue-400 text-white hover:bg-blue-500 uppercase text-xs">
-                                                </form>
-                                            </span>
+                                                <span class="flex justify-end text-left lg:block">
+                                                    <form action="{{ route('cart.update', $cartitem->id) }}" class="flex space-x-4" id="updateForm">
+                                                        <input type="number" name="quantity" id="quantity" value="{{ $cartitem->quantity }}" class="border p-0.5 items-center text-center w-20">
+                                                       
+                                                    </form>
+                                                </span>
                                         </td>
                                         <td
                                             class="relative block w-full p-3 text-center text-gray-800 border border-b lg:w-auto lg:table-cell lg:static">

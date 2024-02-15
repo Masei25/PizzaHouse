@@ -38,12 +38,19 @@
                                     @error('user_type')
                                         <p class="text-red-800 text-sm">{{ $message }}</p>
                                     @enderror
-                                    <select name="user_type" id=""
-                                        class="border rounded-md bg-gray-100 p-2 w-full">
+                                    <select name="user_type" id="user_type" class="border rounded-md bg-gray-100 p-2 w-full"
+                                        onchange="toggleBusinessNameInput()">
                                         <option selected disabled class="font-bold">Select a user type*</option>
                                         <option value="seller">Seller</option>
                                         <option value="buyer">Buyer</option>
                                     </select>
+
+                                    @error('business_name')
+                                        <p class="text-red-800 text-sm">{{ $message }}</p>
+                                    @enderror
+                                    <input type="text" name="business_name" id="business_name"
+                                        placeholder="Business Name*" class="border p-2 rounded-md" style="display: none;">
+                                    <!-- Initially hidden -->
 
                                     @error('email')
                                         <p class="text-red-800 text-sm">{{ $message }}</p>
@@ -62,6 +69,20 @@
                                 <button type="submit"
                                     class="btn btn-primary btn-style mt-3 flex justify-left p-2 rounded-md">Submit</button>
                             </form>
+
+                            <script>
+                                function toggleBusinessNameInput() {
+                                    var userTypeSelect = document.getElementById('user_type');
+                                    var businessNameInput = document.getElementById('business_name');
+
+                                    if (userTypeSelect.value === 'business') {
+                                        businessNameInput.style.display = 'block'; // Show the input
+                                    } else {
+                                        businessNameInput.style.display = 'none'; // Hide the input
+                                    }
+                                }
+                            </script>
+
 
 
 

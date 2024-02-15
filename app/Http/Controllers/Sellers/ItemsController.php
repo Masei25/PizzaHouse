@@ -21,10 +21,10 @@ class ItemsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'item_name' => 'required',
-            'type' => 'required',
+            'item_name' => ['required', 'string', 'max:255'],
+            'type' => 'required|max:255',
             'price' => 'required|integer',
-            'quantity' => 'required|integer',
+            'quantity' => 'required|integer|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,svg,gif|max:2048'
         ]);
 
@@ -78,8 +78,8 @@ class ItemsController extends Controller
 
         if($item->exists()) {
             $request->validate([
-                'item_name' => 'required',
-                'item_type' => 'required',
+                'item_name' => 'required|string|max:255',
+                'item_type' => 'required|string|max:255',
                 'price' => 'required|integer',
                 'quantity' => 'required|integer',
                 'image' => 'sometimes|image|mimes:jpeg,png,jpg,svg,gif|max:2048',
